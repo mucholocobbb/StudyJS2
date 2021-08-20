@@ -1,0 +1,139 @@
+@import _vars
+
+html,body
+    height: 100vh
+
+.wrapper
+    min-height: 100%
+    display: flex
+    flex-direction: column
+
+*
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+    outline: none
+
+.centre
+    padding-left: calc(50vw - 570px)
+    padding-right: calc(50vw - 570px)
+    background-color: rgba(155, 212, 236, 0.2)
+
+.top
+    flex-grow: 1
+    position: relative
+    background-color: rgba(124, 195, 225, 0.1)
+
+.fakeHeader
+    height: 64px
+    width: 100%
+.header
+    display: flex
+    justify-content: space-between
+    align-items: center
+    position: absolute
+    top: 0
+    height: 48px
+    width: 100%
+    border-bottom-left-radius: 25px
+    border-bottom-right-radius: 25px
+    background-color: rgb(145, 160, 201)
+    box-shadow: 0px 4px 20px rgba(124, 195, 225, 0.4)
+    transition: height 0.3s
+    padding-left: $sidePadd
+    padding-right: $sidePadd
+    &:hover
+        height: 64px
+    &:hover .btn-cart
+        transform: scale(1,1)
+
+.mainLogo
+    font-size: 32px
+    color: #073042e8
+    transition: transform 0.2s
+    &:hover
+        transform: rotate(10deg)
+
+.btn-cart
+    background-color: #0c94d3e8
+    border-radius: 30px
+    color: #fff
+    width: 30px
+    height: 32px
+    box-sizing: border-box
+    overflow: hidden
+    border: 0
+    transform: scale(0.8,0.8)
+    transition: all 0.2s
+    &-text
+        display: none
+    &:hover
+        box-shadow: 0 0 4px 2px rgba(57, 143, 180, 0.8)
+        background-color: #008DCD - #111111
+        width: 80px
+    &:hover .btn-cart-logo
+        display: none
+    &:hover .btn-cart-text
+        display: block
+
+.products
+    display: grid
+    grid-template-columns: repeat(auto-fit,minmax(250px, 1fr))
+    grid-gap: 32px
+    justify-items: center
+    align-items: start
+    justify-content: space-around
+    margin-top: 32px
+    margin-bottom: 32px
+    &-item
+        height: 300px
+        background-color: rgba(157, 215, 240, 0.2)
+        box-shadow: 0 0 16px -2px rgba(57, 143, 180, 0.8)
+        box-sizing: border-box
+        display: flex
+        flex-direction: column
+        justify-content: space-around
+        align-items: center
+        transition: all 0.2s
+        &:hover
+            transform: scale(1.03, 1.03)
+            box-shadow: 0 0 16px -5px rgba(57, 143, 180, 0.8)
+
+.desc
+    display: flex
+    flex-direction: column
+    align-items: center
+
+.by-btn
+    background-color: #0c94d3e8
+    border-radius: 30px
+    color: #fff
+    padding-inline-start: 8px
+    padding-inline-end: 8px
+    height: 30px
+    border: 0
+    transition: all 0.2s
+    &:hover
+        box-shadow: 0 0 4px 2px rgba(57, 143, 180, 0.8)
+        background-color: #008DCD - #111111
+
+.mainFooter
+    position: relative
+.footer
+    position: absolute
+    width: 100%
+    max-width: 1140px
+    bottom: 0
+    height: 32px
+    border-top-left-radius: 25px
+    border-top-right-radius: 25px
+    background-color: rgb(111, 131, 185)
+    box-shadow: 0px 4px 20px rgba(124, 195, 225, 0.4)
+    display: flex
+    justify-content: center
+    align-items: center
+    transition: all 0.2s
+    &:hover
+        height: 36px
+.fakeFooter
+    height: 16px

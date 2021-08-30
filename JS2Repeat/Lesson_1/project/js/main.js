@@ -8,6 +8,7 @@
          this._goods = [];
          this._allProducts = [];
          this.filtered = [];
+         this.block = document.querySelector(this.container);
          this._init();
      }
 
@@ -27,11 +28,10 @@
          return this._allProducts.reduce((accum, item) => accum + item.price, 0);
      }
      render() {
-         const block = document.querySelector(this.container);
          this._goods.forEach((product => {
              const productObj = new this.list[this.constructor.name](product);
              this._allProducts.push(productObj);
-             block.insertAdjacentHTML('afterbegin', productObj.render());
+             this.block.insertAdjacentHTML('beforeend', productObj.render());
          }));
      }
      filter(value) {
@@ -77,6 +77,7 @@
          document.querySelector(this.container).addEventListener('click', e => {
              if (e.target.classList.contains('product__item_buyBtn')) {
                  this.cart.addProduct(e.target);
+
              };
          });
          document.querySelector('.top__searchForm').addEventListener('input', e => {
@@ -132,6 +133,7 @@
                          }
                          this._goods = [product];
                          this.render();
+                         this._emptyCart();
                      }
                  } else {
                      alert('Error !!!')
@@ -150,11 +152,24 @@
                      } else {
                          this._allProducts.splice(this._allProducts.indexOf(find), 1);
                          document.querySelector(`.cart__block_item[data-id="${productId}"]`).remove();
+                         this._emptyCart();
                      }
                  } else {
                      alert('Error !!!')
                  }
              })
+     }
+
+     _emptyCart() {
+         let block = document.querySelector('.cart__block_empty')
+         if (this._allProducts.length === 0) {
+             let text = `Корзина Пуста...`
+             if (!block.classList.contains('invisible') && block.childNodes.length == 0) {
+                 block.textContent = text
+             }
+         } else if (this._allProducts.length > 0) {
+             block.textContent = '';
+         }
      }
 
      _updateCart(product) {
@@ -166,6 +181,7 @@
      _init() {
          document.querySelector('.btn-cart').addEventListener('click', () => {
              document.querySelector(this.container).classList.toggle('invisible');
+             //  this._emptyCart();
          })
          document.querySelector(this.container).addEventListener('click', e => {
              if (e.target.classList.contains('cart__block_delBtn')) {
@@ -193,7 +209,7 @@
                             <p class="cart__block_productSinglePrice">${this.price} rub. за шт.</p>
                         </div>
                         <div class="cart__block_rightBlock">
-                            <p class="cart__block_rightBlockPrice">Итого: ${this.quantity * this.price} rub.</p>
+                            <p class="cart__block_rightBlockPrice">${this.quantity * this.price} rub.</p>
                             <button class="cart__block_delBtn" data-id="${this.id_product}">&times;</button>
                         </div>
                     </div>
